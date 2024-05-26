@@ -409,7 +409,11 @@
 -analyzer:"C:/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Enemy.cs"
+"Assets/ObjectPoolManager.cs"
+"Assets/ObjectSpawner.cs"
 "Assets/Scripts/Player/CharacterController2D.cs"
+"Assets/Scripts/Player/PlayerCombat.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/TestScript.cs"
 -langversion:9.0
