@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137dc677925387240b7673b2ac7e5db8, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
-  chaseSpeed: 10
-  maxTime: 1
-  maxDistance: 1
-  chaseTime: 5
+  chaseSpeed: 2300
+  maxChaseSpeed: 12
   patrolSpeed: 2000
-  maxSpeed: 18
+  maxPatrolSpeed: 8
   patrolWaitTime: 3
   patrolRadius: 10
-  nextWaypointDistance: 0.5
+  nextWaypointDistance: 1
   attackForce: 20
-  laughTime: 2
+  attackDistance: 4
+  attackDuration: 0.6
   stunTime: 1

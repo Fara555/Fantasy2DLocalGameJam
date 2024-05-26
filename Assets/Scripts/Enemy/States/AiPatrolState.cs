@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class AiPatrolState : AiState
 {
-    private float requiredPastDistance = 3f;
-
+    private bool move;
 
     public void Enter(AiAgent agent)
     {
@@ -19,25 +18,25 @@ public class AiPatrolState : AiState
     public AiStateId GetId()
     {
         return AiStateId.Patrol;
-
     }
 
     public void Update(AiAgent agent)
     {
-        if (agent.path == null)
+        if (agent.sensor.seenPlayer)
         {
-            return;
+            agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
         }
+
+        if (agent.path == null) return;
+
 
         if (agent.currentWaypoint >= agent.path.vectorPath.Count)
         {
             agent.reachedEndOfPath = true;
             return;
         }
-        else
-        {
-            agent.reachedEndOfPath = false;
-        }
+        else agent.reachedEndOfPath = false;
+
 
         Vector2 direction = ((Vector2)agent.path.vectorPath[agent.currentWaypoint] - agent.rb.position).normalized;
         Vector2 force = direction * agent.config.patrolSpeed * Time.deltaTime;
@@ -45,30 +44,25 @@ public class AiPatrolState : AiState
         float pastDistance = Vector2.Distance(agent.rb.position, agent.patrolPoints[agent.currentPointIndex].position);
 
         // Apply force to move the agent
-        agent.rb.AddForce(force);
+        if (move) agent.rb.AddForce(force);
+
+        agent.animator.SetFloat("Speed", Mathf.Abs(agent.rb.velocity.x));
 
         // Limit the overall velocity to max speed
-        if (agent.rb.velocity.magnitude > agent.config.maxSpeed)
-        {
-            agent.rb.velocity = agent.rb.velocity.normalized * agent.config.maxSpeed;
-        }
+        if (agent.rb.velocity.magnitude > agent.config.maxPatrolSpeed) agent.rb.velocity = agent.rb.velocity.normalized * agent.config.maxPatrolSpeed;
+
 
         // Limit the x velocity component to prevent speeding up downhill
-        if (Mathf.Abs(agent.rb.velocity.x) > agent.config.maxSpeed)
-        {
-            agent.rb.velocity = new Vector2(Mathf.Sign(agent.rb.velocity.x) * agent.config.maxSpeed, agent.rb.velocity.y);
-        }
+        if (Mathf.Abs(agent.rb.velocity.x) > agent.config.maxPatrolSpeed) agent.rb.velocity = new Vector2(Mathf.Sign(agent.rb.velocity.x) * agent.config.maxPatrolSpeed, agent.rb.velocity.y);
 
-        if (distance < agent.config.nextWaypointDistance)
-        {
-            agent.currentWaypoint++;
-        }
+        if (distance < agent.config.nextWaypointDistance) agent.currentWaypoint++;
 
         if (pastDistance < agent.config.nextWaypointDistance)
         {
+            move = false;
             // Stop the agent when it reaches the patrol point
             agent.rb.velocity = Vector2.zero;
-            agent.walk = false; // set animation
+            agent.rb.angularVelocity = 0f;
 
             // Wait before moving to the next waypoint
             if (!agent.once)
@@ -79,7 +73,17 @@ public class AiPatrolState : AiState
         }
         else
         {
-            agent.walk = true; // set animation
+            move = true;
+        }
+
+        // Flip the sprite based on movement direction
+        if (agent.rb.velocity.x > 0)
+        {
+            agent.transform.localScale = new Vector3(Mathf.Abs(agent.transform.localScale.x), agent.transform.localScale.y, agent.transform.localScale.z);
+        }
+        else if (agent.rb.velocity.x < 0)
+        {
+            agent.transform.localScale = new Vector3(-Mathf.Abs(agent.transform.localScale.x), agent.transform.localScale.y, agent.transform.localScale.z);
         }
     }
 

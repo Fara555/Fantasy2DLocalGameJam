@@ -32,5 +32,4 @@ public class BasicEnemy: AiAgent
             currentWaypoint = 0;
         }
     }
-
 }

@@ -12,6 +12,7 @@ public class AiAgent : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public PlayerHealth playerHealth;
     [HideInInspector] public PlayerMovement playerMovement;
+    [HideInInspector] public AISensor sensor;
 
     [HideInInspector] public Seeker agentSeeker;
     [HideInInspector] public Path path;
@@ -34,7 +35,8 @@ public class AiAgent : MonoBehaviour
 
     protected virtual void Start()
     {
-        animator = GetComponent<Animator>();
+        sensor = GetComponent<AISensor>();
+        animator = GetComponentInChildren<Animator>();
         agentSeeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
