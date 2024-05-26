@@ -11,15 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Middleground
-  - Foreground
-  - Background
-<<<<<<< HEAD
   - Enemy
-=======
-  - Enemies
->>>>>>> 99c685fd2ab940e3e93228e18f27cd3263e01aac
+  - Middleground
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -46,11 +42,14 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 2488408137
+    uniqueID: 3172485743
+    locked: 0
+  - name: Middleground
+    uniqueID: 390176217
     locked: 0
   - name: Player
-    uniqueID: 4055627719
+    uniqueID: 3204664531
     locked: 0
   - name: Foreground
-    uniqueID: 1413303823
+    uniqueID: 1140414651
     locked: 0

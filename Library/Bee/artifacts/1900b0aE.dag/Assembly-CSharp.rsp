@@ -416,10 +416,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VisualStudio.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-<<<<<<< HEAD
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Enemy.cs"
+"Assets/ObjectPoolManager.cs"
+"Assets/ObjectSpawner.cs"
 "Assets/Scripts/Enemy/AiAgent.cs"
 "Assets/Scripts/Enemy/AiAgentConfig.cs"
 "Assets/Scripts/Enemy/AiState.cs"
@@ -430,17 +432,8 @@
 "Assets/Scripts/Enemy/States/AIChaseState.cs"
 "Assets/Scripts/Enemy/States/AiPatrolState.cs"
 "Assets/Scripts/Player/CharacterController2D.cs"
-"Assets/Scripts/Player/PlayerHealth.cs"
-=======
--analyzer:"C:/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
--analyzer:"C:/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
--analyzer:"C:/2023.2.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
-"Assets/Enemy.cs"
-"Assets/ObjectPoolManager.cs"
-"Assets/ObjectSpawner.cs"
-"Assets/Scripts/Player/CharacterController2D.cs"
 "Assets/Scripts/Player/PlayerCombat.cs"
->>>>>>> 99c685fd2ab940e3e93228e18f27cd3263e01aac
+"Assets/Scripts/Player/PlayerHealth.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 -langversion:9.0
 
