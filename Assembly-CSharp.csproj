@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2023.2.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Enemy\AiStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemy\BasicEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\AiAgent.cs" />
@@ -72,6 +73,14 @@
     <Compile Include="Assets\Scripts\Enemy\States\AiAttackState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Enemy\AiState.cs" />
+=======
+    <Compile Include="Assets\Scripts\Player\PlayerCombat.cs" />
+    <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
+    <Compile Include="Assets\Enemy.cs" />
+    <Compile Include="Assets\TestScript.cs" />
+    <Compile Include="Assets\ObjectPoolManager.cs" />
+    <Compile Include="Assets\ObjectSpawner.cs" />
+>>>>>>> 99c685fd2ab940e3e93228e18f27cd3263e01aac
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,11 @@ TagManager:
   - Middleground
   - Foreground
   - Background
+<<<<<<< HEAD
   - Enemy
+=======
+  - Enemies
+>>>>>>> 99c685fd2ab940e3e93228e18f27cd3263e01aac
   - 
   - 
   - 
