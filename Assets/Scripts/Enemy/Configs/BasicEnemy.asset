@@ -19,6 +19,9 @@ MonoBehaviour:
   patrolWaitTime: 3
   patrolRadius: 10
   nextWaypointDistance: 1
+  patrolZoneMinX: 0
+  patrolZoneMaxX: 44.6
+  showPatrolZone: 1
   attackForce: 20
   attackDistance: 3
   attackDuration: 0.6

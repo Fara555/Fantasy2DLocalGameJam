@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))  //Inputs from player to jump
         {
             jump = true;
-            animator.SetBool("IsJumping", true);
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) //Input from player to cut jump
         {

@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using Pathfinding;
-using System.Collections;
 
-//Head of the enemyAI
+// Head of the enemyAI
 public class AiAgent : MonoBehaviour
 {
     [HideInInspector] public AiStateMachine stateMachine;
@@ -22,20 +21,21 @@ public class AiAgent : MonoBehaviour
     [HideInInspector] public int currentPointIndex = 1;
     [HideInInspector] public bool once;
     [HideInInspector] public bool walk;
-
     [HideInInspector] public Vector2 targetPoint;
-
-
-    [HideInInspector] public bool isListening;
-
+    [HideInInspector] public Vector2 patrolCenter;
     public AiStateId initialState;
 
     [Space(15f)]
     public LayerMask groundLayers;
     public AiAgentConfig config;
 
+    [HideInInspector] public float initialX;
+
     protected virtual void Start()
     {
+        initialX = transform.position.x;
+        patrolCenter = transform.position;
+        patrolCenter += new Vector2(0, 40);
         sensor = GetComponent<AISensor>();
         animator = GetComponentInChildren<Animator>();
         agentSeeker = GetComponent<Seeker>();
@@ -55,5 +55,30 @@ public class AiAgent : MonoBehaviour
     private void Update()
     {
         stateMachine.Update();
+    }
+
+    public void UpdatePath()
+    {
+        if (agentSeeker.IsDone())
+        {
+            agentSeeker.StartPath(rb.position, playerTransform.position, OnPathComplete);
+        }
+    }
+
+    public void UpdatePathToPoint()
+    {
+        if (agentSeeker.IsDone())
+        {
+            agentSeeker.StartPath(rb.position, targetPoint, OnPathComplete);
+        }
+    }
+
+    public void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
     }
 }

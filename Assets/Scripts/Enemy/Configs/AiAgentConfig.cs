@@ -15,6 +15,9 @@ public class AiAgentConfig : ScriptableObject
     public float patrolWaitTime = 3.0f;
     public float patrolRadius = 10f;
     public float nextWaypointDistance = 3f;
+    public float patrolZoneMinX = 0f;
+    public float patrolZoneMaxX = 30f;
+    public bool showPatrolZone = false;
 
     [Header("Attack")]
     public float attackForce = 20f;

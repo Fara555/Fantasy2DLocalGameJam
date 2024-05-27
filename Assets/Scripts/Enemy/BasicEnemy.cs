@@ -1,39 +1,35 @@
-
 using UnityEngine;
 
-public class BasicEnemy: AiAgent
+public class BasicEnemy : AiAgent
 {
     protected override void Start()
     {
         base.Start();
     }
-    public void UpdatePath()
-    {
-        if (agentSeeker.IsDone())
-        {
-            agentSeeker.StartPath(rb.position, playerTransform.position, OnPathComplete);
-        }
-    }
 
-    public void UpdatePathToPoint()
+    private void OnEnable()
     {
-        if (agentSeeker.IsDone())
-        {
-            agentSeeker.StartPath(rb.position, targetPoint, OnPathComplete);
-        }
-    }
-
-    public void OnPathComplete(Pathfinding.Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
+        initialX = transform.position.x;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(targetPoint, 5f);
+        if (config.showPatrolZone)
+        {
+            // Установите цвет Gizmos
+            Gizmos.color = Color.red;
+
+            // Определите нижнюю и верхнюю точки для полоски/квадрата
+            Vector3 bottomLeft = new Vector3(initialX + config.patrolZoneMinX, transform.position.y - 3, 0); // Используйте подходящее значение для y
+            Vector3 topLeft = new Vector3(initialX + config.patrolZoneMinX, transform.position.y + 3, 0);    // Используйте подходящее значение для y
+            Vector3 bottomRight = new Vector3(initialX + config.patrolZoneMaxX, transform.position.y - 3, 0); // Используйте подходящее значение для y
+            Vector3 topRight = new Vector3(initialX + config.patrolZoneMaxX, transform.position.y + 3, 0);    // Используйте подходящее значение для y
+
+            // Отрисовка линии или квадрата
+            Gizmos.DrawLine(bottomLeft, topLeft);
+            Gizmos.DrawLine(topLeft, topRight);
+            Gizmos.DrawLine(topRight, bottomRight);
+            Gizmos.DrawLine(bottomRight, bottomLeft);
+        }
     }
 }
