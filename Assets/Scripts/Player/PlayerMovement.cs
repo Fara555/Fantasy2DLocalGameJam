@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     //Movement
+    private bool dodge = false;
     private bool jump = false;
     private bool cutJump = false;
     private bool crouch = false;
@@ -20,14 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         
     }
 
     private void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; //Input from player to run
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        controller.animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetButtonDown("Jump"))  //Inputs from player to jump
         {
@@ -46,22 +46,28 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
+
+        if (Input.GetButtonDown("Dodge") && !controller.dodgeOnCooldown)
+        {
+            dodge = true;
+        }
     }
 
     private void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, cutJump); //Move method
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, cutJump, dodge); //Move method
         jump = false;
         cutJump = false;
+        dodge = false;
     }
 
     public void OnLanding()//Method for landing event animation
     {
-        animator.SetBool("IsJumping", false);
+        controller.animator.SetBool("IsJumping", false);
     }
 
     public void OnCrouching(bool isCrouching)//Method for crouching event animation
     {
-        animator.SetBool("IsCrouching", isCrouching);
+        controller.animator.SetBool("IsCrouching", isCrouching);
     }
 }

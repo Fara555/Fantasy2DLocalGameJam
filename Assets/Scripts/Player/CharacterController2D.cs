@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +10,10 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform groundCheck; // A position marking where to check if the player is grounded.
 	[SerializeField] private Transform ceilingCheck; // A position marking where to check for ceilings
 	[SerializeField] private Collider2D crouchDisableCollider;
+	[SerializeField] private PlayerHealth health;
+	[SerializeField] private LayerMask whatIsOverrideWhenDoding;
 
+	[HideInInspector] public Animator animator;
 
 	const float groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool isGrounded;            // Whether or not the player is grounded.
@@ -36,15 +40,21 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private float jumpCutMultiplier;
 	[SerializeField] private float jumpBufferTime;
 	[SerializeField] private float fallGravityMultiplier;
+	[SerializeField] private float dodgeForce;
+	[SerializeField] private float dodgeTime;
+	[SerializeField] private float dodgeCooldown = 1f;
 	private float gravityScale = 5f;
 	private float lastGroundedTime;
     private float lastJumpTime;
+
+	[HideInInspector] public bool dodgeOnCooldown;
 	
 
     private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		m_transform = GetComponent<Transform>();
+		animator = GetComponent<Animator>();	
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -53,6 +63,8 @@ public class CharacterController2D : MonoBehaviour
 			OnCrouchEvent = new BoolEvent();
 
 		gravityScale = rb.gravityScale;
+
+		dodgeOnCooldown = false;
 	}
 
 
@@ -75,7 +87,7 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-	public void Move(float move, bool crouch, bool jump, bool cutJump)
+	public void Move(float move, bool crouch, bool jump, bool cutJump, bool dodge)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -85,6 +97,11 @@ public class CharacterController2D : MonoBehaviour
 			{
 				crouch = true;
 			}
+		}
+
+		if (dodge && !crouch && !dodgeOnCooldown)
+		{
+			StartCoroutine(ExecuteDodge());
 		}
 
 		//only control the player if grounded or airControl is turned on
@@ -241,5 +258,33 @@ public class CharacterController2D : MonoBehaviour
 		lastGroundedTime = 0f;
 		lastJumpTime = 0f;
 		isGrounded = false;
+	}
+
+	private IEnumerator ExecuteDodge()
+	{
+		Dodge();
+		yield return new WaitForSeconds(dodgeTime);
+		StartCoroutine(SetDodgeOnCooldown());
+    }
+
+	private void Dodge()
+	{
+        animator.SetBool("Dodge", true);
+
+        rb.excludeLayers = whatIsOverrideWhenDoding; // Make player phase thru specific layer
+        dodgeOnCooldown = true;
+        health.dodging = true;
+
+        if (facingRight) rb.AddForce(Vector3.right * dodgeForce, ForceMode2D.Impulse);
+        else rb.AddForce(Vector3.left * dodgeForce, ForceMode2D.Impulse);
+    }
+
+    private IEnumerator SetDodgeOnCooldown()
+	{
+        animator.SetBool("Dodge", false);
+        health.dodging = false;
+		rb.excludeLayers = 0; // Return to nothing
+        yield return new WaitForSeconds(dodgeCooldown);
+		dodgeOnCooldown = false;
 	}
 }

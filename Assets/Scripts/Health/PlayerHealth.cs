@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
+    [HideInInspector] public bool dodging;
+
     protected override void Update()
     {
         base.Update();
@@ -16,6 +18,6 @@ public class PlayerHealth : Health
 
     public override void DealDamage(float damageAmount)
     {
-        base.DealDamage(damageAmount);  
+        if (!dodging) base.DealDamage(damageAmount);
     }
 }
