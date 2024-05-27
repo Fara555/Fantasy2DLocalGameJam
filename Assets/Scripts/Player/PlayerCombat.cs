@@ -1,15 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public Transform attackPoint;
-    public LayerMask enemyLayers;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer weaponSpriteRenderer;
 
-    public float attackRange = 0.5f;
-    public int attackDamage = 10;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private int attackDamage = 10;
+    [SerializeField] private float attackRate = 2f;
 
-    public float attackRate = 2f;
-    float nextAttackTime = 0f;
+    [SerializeField] private bool drawAttackRange;
+
+    [SerializeField] private float attackAnimationDuration;
+
+    private float nextAttackTime = 0f;
+
+    private void Start()
+    {
+        weaponSpriteRenderer.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,13 +30,13 @@ public class PlayerCombat : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Attack();
+                StartCoroutine(MeleeAtack());
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
     }
 
-    void Attack()
+    private IEnumerator MeleeAtack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -32,13 +44,23 @@ public class PlayerCombat : MonoBehaviour
         {
             enemy.GetComponent<EnemyHealth>().DealDamage(attackDamage);
         }
-        // Анимация атаки
+
+        weaponSpriteRenderer.enabled = true;
+        animator.SetBool("Atack", true);
+
+        yield return new WaitForSeconds(attackAnimationDuration);
+
+        weaponSpriteRenderer.enabled = false;
+        animator.SetBool("Atack", false);
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
-        if (attackPoint == null)
-            return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        if (drawAttackRange)
+        {
+            if (attackPoint == null)
+                return;
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        }
     }
 }

@@ -273,7 +273,7 @@ public class CharacterController2D : MonoBehaviour
 
         rb.excludeLayers = whatIsOverrideWhenDoding; // Make player phase thru specific layer
         dodgeOnCooldown = true;
-        health.dodging = true;
+        health.invincible = true;
 
         if (facingRight) rb.AddForce(Vector3.right * dodgeForce, ForceMode2D.Impulse);
         else rb.AddForce(Vector3.left * dodgeForce, ForceMode2D.Impulse);
@@ -282,7 +282,7 @@ public class CharacterController2D : MonoBehaviour
     private IEnumerator SetDodgeOnCooldown()
 	{
         animator.SetBool("Dodge", false);
-        health.dodging = false;
+        health.invincible = false;
 		rb.excludeLayers = 0; // Return to nothing
         yield return new WaitForSeconds(dodgeCooldown);
 		dodgeOnCooldown = false;

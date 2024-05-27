@@ -13,7 +13,7 @@ public class AISensor : MonoBehaviour
 
     private void Start()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider = GetComponentInChildren<CircleCollider2D>();
         circleCollider.radius = radius;
         
     }
