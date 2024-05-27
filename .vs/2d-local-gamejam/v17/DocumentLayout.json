@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C731854D-7689-61C3-2996-27530652264D}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\gamejam\\2d-local-gamejam\\assets\\scripts\\gotoscene\\scenefadeinmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C731854D-7689-61C3-2996-27530652264D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gotoscene\\scenefadeinmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C731854D-7689-61C3-2996-27530652264D}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\gamejam\\2d-local-gamejam\\assets\\scripts\\enemy\\states\\aiattackstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C731854D-7689-61C3-2996-27530652264D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\states\\aiattackstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C731854D-7689-61C3-2996-27530652264D}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\gamejam\\2d-local-gamejam\\assets\\objectspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C731854D-7689-61C3-2996-27530652264D}|Assembly-CSharp.csproj|C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\assets\\objectspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C731854D-7689-61C3-2996-27530652264D}|Assembly-CSharp.csproj|solutionrelative:assets\\objectspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -35,6 +39,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SceneFadeInManager.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\Assets\\Scripts\\GoToScene\\SceneFadeInManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GoToScene\\SceneFadeInManager.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\Assets\\Scripts\\GoToScene\\SceneFadeInManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GoToScene\\SceneFadeInManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T23:05:54.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AiAttackState.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\Assets\\Scripts\\Enemy\\States\\AiAttackState.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\States\\AiAttackState.cs",
@@ -47,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ObjectSpawner.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\Assets\\ObjectSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\ObjectSpawner.cs",
@@ -55,12 +72,11 @@
               "RelativeToolTip": "Assets\\ObjectSpawner.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T18:25:45.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T18:25:45.173Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ObjectPoolManager.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\Assets\\ObjectPoolManager.cs",
               "RelativeDocumentMoniker": "Assets\\ObjectPoolManager.cs",
@@ -72,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\Assets\\Enemy.cs",
               "RelativeDocumentMoniker": "Assets\\Enemy.cs",
@@ -84,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PlayerCombat.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\GameJam\\2d-local-gamejam\\Assets\\Scripts\\Player\\PlayerCombat.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerCombat.cs",
