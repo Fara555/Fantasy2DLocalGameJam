@@ -34,10 +34,14 @@ public class AiAttackState : AiState
         float distance = Vector2.Distance(agent.transform.position, agent.playerTransform.position);
         if (distance < agent.config.attackDistance)
         {
-            //Deal damage // TODO
+            agent.playerHealth.DealDamage(20f);
+
+            Vector2 direction = (agent.playerTransform.position - agent.transform.position).normalized;
+            Vector2 force = direction * agent.config.attackForce;
+            agent.playerRigidbody.AddForce(force, ForceMode2D.Impulse);
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(agent.config.attackInterval);
         agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
     }
 }

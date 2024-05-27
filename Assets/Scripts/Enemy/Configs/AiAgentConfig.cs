@@ -20,6 +20,7 @@ public class AiAgentConfig : ScriptableObject
     public float attackForce = 20f;
     public float attackDistance = 2f;
     public float attackDuration = 0.6f;
+    public float attackInterval = 0.3f;
 
     [Header("Stunned")]
     public float stunTime = 1f;

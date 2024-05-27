@@ -4,15 +4,23 @@ using UnityEngine;
 public class AiPatrolState : AiState
 {
     private bool move;
+    private Vector2 patrolAreaMin;
+    private Vector2 patrolAreaMax;
 
     public void Enter(AiAgent agent)
     {
-        agent.InvokeRepeating("UpdatePathToPoint", 0f, 0.3f); //start repeating "UpdatePath" method
+        // ”становите границы зоны патрулировани€ (например, по углам пр€моугольника)
+        patrolAreaMin = new Vector2(-20, 10); // минимальные координаты
+        patrolAreaMax = new Vector2(20, 2); // максимальные координаты
+
+        SetRandomPatrolPoint(agent);
+
+        agent.InvokeRepeating("UpdatePathToPoint", 0f, 0.3f); // start repeating "UpdatePath" method
     }
 
     public void Exit(AiAgent agent)
     {
-        agent.CancelInvoke("UpdatePathToPoint"); //Stop repeat "UpdatePathToPoint" method
+        agent.CancelInvoke("UpdatePathToPoint"); // Stop repeat "UpdatePathToPoint" method
     }
 
     public AiStateId GetId()
@@ -29,7 +37,6 @@ public class AiPatrolState : AiState
 
         if (agent.path == null) return;
 
-
         if (agent.currentWaypoint >= agent.path.vectorPath.Count)
         {
             agent.reachedEndOfPath = true;
@@ -37,11 +44,9 @@ public class AiPatrolState : AiState
         }
         else agent.reachedEndOfPath = false;
 
-
         Vector2 direction = ((Vector2)agent.path.vectorPath[agent.currentWaypoint] - agent.rb.position).normalized;
         Vector2 force = direction * agent.config.patrolSpeed * Time.deltaTime;
         float distance = Vector2.Distance(agent.rb.position, agent.path.vectorPath[agent.currentWaypoint]);
-        float pastDistance = Vector2.Distance(agent.rb.position, agent.patrolPoints[agent.currentPointIndex].position);
 
         // Apply force to move the agent
         if (move) agent.rb.AddForce(force);
@@ -49,15 +54,16 @@ public class AiPatrolState : AiState
         agent.animator.SetFloat("Speed", Mathf.Abs(agent.rb.velocity.x));
 
         // Limit the overall velocity to max speed
-        if (agent.rb.velocity.magnitude > agent.config.maxPatrolSpeed) agent.rb.velocity = agent.rb.velocity.normalized * agent.config.maxPatrolSpeed;
-
+        if (agent.rb.velocity.magnitude > agent.config.maxPatrolSpeed)
+            agent.rb.velocity = agent.rb.velocity.normalized * agent.config.maxPatrolSpeed;
 
         // Limit the x velocity component to prevent speeding up downhill
-        if (Mathf.Abs(agent.rb.velocity.x) > agent.config.maxPatrolSpeed) agent.rb.velocity = new Vector2(Mathf.Sign(agent.rb.velocity.x) * agent.config.maxPatrolSpeed, agent.rb.velocity.y);
+        if (Mathf.Abs(agent.rb.velocity.x) > agent.config.maxPatrolSpeed)
+            agent.rb.velocity = new Vector2(Mathf.Sign(agent.rb.velocity.x) * agent.config.maxPatrolSpeed, agent.rb.velocity.y);
 
         if (distance < agent.config.nextWaypointDistance) agent.currentWaypoint++;
 
-        if (pastDistance < agent.config.nextWaypointDistance)
+        if (agent.reachedEndOfPath)
         {
             move = false;
             // Stop the agent when it reaches the patrol point
@@ -90,14 +96,33 @@ public class AiPatrolState : AiState
     private IEnumerator WaitForNextWaypoint(AiAgent agent)
     {
         yield return new WaitForSeconds(agent.config.patrolWaitTime);
-        if (agent.currentPointIndex + 1 < agent.patrolPoints.Length)
-        {
-            agent.currentPointIndex++;
-        }
-        else
-        {
-            agent.currentPointIndex = 0;
-        }
+        SetRandomPatrolPoint(agent);
         agent.once = false;
+    }
+
+    private void SetRandomPatrolPoint(AiAgent agent)
+    {
+        Vector2 randomPoint = GetRandomPointInPatrolArea(agent);
+        agent.targetPoint = randomPoint;
+    }
+
+    private Vector2 GetRandomPointInPatrolArea(AiAgent agent)
+    {
+        Vector2 randomPoint;
+        do
+        {
+            float randomX = Random.Range(patrolAreaMin.x, patrolAreaMax.x);
+            float randomY = Random.Range(patrolAreaMin.y, patrolAreaMax.y);
+            randomPoint = new Vector2(randomX, randomY);
+        } while (!IsPointOnGround(randomPoint, agent));
+
+        return randomPoint;
+    }
+
+    private bool IsPointOnGround(Vector2 point, AiAgent agent)
+    {
+        // ѕровер€ем, находитс€ ли точка на земле с помощью Physics2D.OverlapCircle
+        Collider2D groundCollider = Physics2D.OverlapCircle(point, 0.1f, agent.groundLayers);
+        return groundCollider != null;
     }
 }

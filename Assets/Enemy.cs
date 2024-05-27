@@ -19,25 +19,8 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            StartCoroutine(Die());
+            //die
         }
-    }
-
-    IEnumerator Die()
-    {
-        Debug.Log("Enemy died!");
-
-        // Play die animation if any
-
-        // Disable enemy collider and script
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-
-        // Wait for death delay
-        yield return new WaitForSeconds(deathDelay);
-
-        // Return enemy to pool
-        ObjectPoolManager.Instance.ReturnEnemyToPool(gameObject);
     }
 
     public void Activate(Vector3 position)

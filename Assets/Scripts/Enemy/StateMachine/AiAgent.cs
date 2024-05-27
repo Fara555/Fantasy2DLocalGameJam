@@ -8,6 +8,7 @@ public class AiAgent : MonoBehaviour
 {
     [HideInInspector] public AiStateMachine stateMachine;
     [HideInInspector] public Transform playerTransform;
+    [HideInInspector] public Rigidbody2D playerRigidbody;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator animator;
     [HideInInspector] public PlayerHealth playerHealth;
@@ -22,7 +23,7 @@ public class AiAgent : MonoBehaviour
     [HideInInspector] public bool once;
     [HideInInspector] public bool walk;
 
-    public Transform[] patrolPoints;
+    [HideInInspector] public Vector2 targetPoint;
 
 
     [HideInInspector] public bool isListening;
@@ -41,7 +42,7 @@ public class AiAgent : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         playerHealth = playerTransform.gameObject.GetComponent<PlayerHealth>();
-        playerMovement = playerTransform.gameObject.GetComponent<PlayerMovement>();
+        playerRigidbody = playerTransform.gameObject.GetComponent<Rigidbody2D>();
 
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AIChaseState());

@@ -20,6 +20,7 @@ MonoBehaviour:
   patrolRadius: 10
   nextWaypointDistance: 1
   attackForce: 20
-  attackDistance: 4
+  attackDistance: 3
   attackDuration: 0.6
+  attackInterval: 0.3
   stunTime: 1

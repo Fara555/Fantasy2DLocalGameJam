@@ -1,6 +1,5 @@
-using System.Collections;
-using UnityEngine;
 
+using UnityEngine;
 
 public class BasicEnemy: AiAgent
 {
@@ -20,7 +19,7 @@ public class BasicEnemy: AiAgent
     {
         if (agentSeeker.IsDone())
         {
-            agentSeeker.StartPath(rb.position, patrolPoints[currentPointIndex].position, OnPathComplete);
+            agentSeeker.StartPath(rb.position, targetPoint, OnPathComplete);
         }
     }
 
@@ -31,5 +30,10 @@ public class BasicEnemy: AiAgent
             path = p;
             currentWaypoint = 0;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(targetPoint, 5f);
     }
 }
