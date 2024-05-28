@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprites/Weapons/SwordPrime.meta
 guid: f47201e3edc8e1745ae8b0fd6fd39957
+========
+guid: b44b29dfb80c2e74b91974e1436979f1
+>>>>>>>> d3dd2f9ecc67a35d06389691227333195f10c05a:Assets/Scripts/Cutscene.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
