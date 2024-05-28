@@ -437,6 +437,8 @@
 "Assets/Scripts/Health/Health.cs"
 "Assets/Scripts/Health/PlayerHealth.cs"
 "Assets/Scripts/Player/CharacterController2D.cs"
+"Assets/Scripts/Player/FireBall.cs"
+"Assets/Scripts/Player/PlayerCasting.cs"
 "Assets/Scripts/Player/PlayerCombat.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 -langversion:9.0

@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyHealth : Health
 {
     [SerializeField] private float deathDelay;
+    [HideInInspector] public ObjectPoolManager enemyPool;
 
     protected override void Update()
     {
@@ -41,7 +42,7 @@ public class EnemyHealth : Health
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         yield return new WaitForSeconds(deathDelay);
-        ObjectPoolManager.Instance.ReturnEnemyToPool(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void Revive(Vector3 position)

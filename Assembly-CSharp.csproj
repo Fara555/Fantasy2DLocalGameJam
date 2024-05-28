@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Health\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Health\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\AiPatrolState.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerCasting.cs" />
     <Compile Include="Assets\Scripts\Enemy\StateMachine\AiAgent.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCombat.cs" />
     <Compile Include="Assets\Scripts\AniamtionScripts\Anim.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\Health\Health.cs" />
     <Compile Include="Assets\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\Enemy\StateMachine\AiState.cs" />
+    <Compile Include="Assets\Scripts\Player\FireBall.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemy\AISensor.cs" />
   </ItemGroup>

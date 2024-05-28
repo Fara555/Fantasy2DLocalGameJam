@@ -4,47 +4,39 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager Instance;
-
-    public GameObject enemyPrefab;
+    public GameObject prefab;
     public int poolSize = 10;
 
-    private List<GameObject> enemyPool;
+    private List<GameObject> objectsPool;
 
     void Awake()
     {
-        Instance = this;
-
         // Инициализация пула
-        enemyPool = new List<GameObject>();
+        objectsPool = new List<GameObject>();
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab);
+            GameObject enemy = Instantiate(prefab);
+            enemy.transform.parent = gameObject.transform;
             enemy.SetActive(false);
-            enemyPool.Add(enemy);
+            objectsPool.Add(enemy);
         }
     }
 
-    public GameObject GetPooledEnemy()
+    public GameObject GetPooledObject()
     {
-        foreach (GameObject enemy in enemyPool)
+        foreach (GameObject obj in objectsPool)
         {
-            if (!enemy.activeInHierarchy)
+            if (!obj.activeInHierarchy)
             {
-                return enemy;
+                return obj;
             }
         }
 
-        // Если все враги активны, создаем нового и добавляем в пул
-        GameObject newEnemy = Instantiate(enemyPrefab);
-        newEnemy.SetActive(false);
-        enemyPool.Add(newEnemy);
-        return newEnemy;
-    }
-
-    public void ReturnEnemyToPool(GameObject enemy)
-    {
-        enemy.SetActive(false);
+        // Если все обьекиы активны, создаем новый и добавляем в пул
+        GameObject newObject = Instantiate(prefab);
+        newObject.SetActive(false);
+        objectsPool.Add(newObject);
+        return newObject;
     }
 }

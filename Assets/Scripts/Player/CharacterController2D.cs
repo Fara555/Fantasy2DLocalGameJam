@@ -20,7 +20,7 @@ public class CharacterController2D : MonoBehaviour
 	const float ceilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D rb;
 	private Transform m_transform;
-	private bool facingRight = true;  // For determining which way the player is currently facing.
+	[HideInInspector] public bool facingRight = true;  // For determining which way the player is currently facing.
 
 	[Header("Events"), Space(10f)]
 	public UnityEvent OnLandEvent;

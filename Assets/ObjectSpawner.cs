@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public ObjectPoolManager objectPoolManager;
+    public ObjectPoolManager enemyPool;
     public int enemiesToSpawn = 5;
     public float spawnRate = 2f;
 
@@ -37,14 +37,9 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy(List<Transform> availableSpawnPoints)
     {
-        if (availableSpawnPoints.Count == 0)
-        {
-            Debug.LogError("No available spawn points left.");
-            return;
-        }
+        if (availableSpawnPoints.Count == 0) return;
 
-        GameObject enemy = objectPoolManager.GetPooledEnemy();
-
+        GameObject enemy = enemyPool.GetPooledObject();
         if (enemy != null)
         {
             // Выбираем случайную точку из оставшихся доступных
@@ -59,22 +54,6 @@ public class EnemySpawner : MonoBehaviour
             availableSpawnPoints.RemoveAt(spawnIndex);
 
             enemiesSpawned++;
-        }
-    }
-
-    // Метод, который вызывается при "смерти" врага
-    public void EnemyDied(GameObject enemy)
-    {
-        // Деактивируем врага и возвращаем в пул
-        enemy.SetActive(false);
-        objectPoolManager.ReturnEnemyToPool(enemy);
-        enemiesSpawned--;
-
-        // Если достигнуто количество спаунов, прекращаем спавн
-        if (enemiesSpawned <= 0)
-        {
-            StopCoroutine(spawnCoroutine);
-            Debug.Log("All enemies spawned and died.");
         }
     }
 }
