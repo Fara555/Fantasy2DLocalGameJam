@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2023.2.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\BasicEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\Configs\AiAgentConfig.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\AIChaseState.cs" />
@@ -76,13 +77,11 @@
     <Compile Include="Assets\Scripts\Enemy\States\AiAFK.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\AiAttackState.cs" />
-    <Compile Include="Assets\Enemy.cs" />
-    <Compile Include="Assets\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\Health\Health.cs" />
-    <Compile Include="Assets\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\Enemy\StateMachine\AiState.cs" />
     <Compile Include="Assets\Scripts\Player\FireBall.cs" />
     <Compile Include="Assets\Scripts\GoToScene\SceneFadeInManager.cs" />
+    <Compile Include="Assets\Scripts\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemy\AISensor.cs" />
   </ItemGroup>

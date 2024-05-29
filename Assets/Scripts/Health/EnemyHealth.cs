@@ -38,7 +38,6 @@ public class EnemyHealth : Health
 
     private IEnumerator EnemyDeath()
     {
-        Debug.Log("Enemy died!");
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         yield return new WaitForSeconds(deathDelay);

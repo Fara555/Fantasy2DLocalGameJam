@@ -9,12 +9,17 @@ public class PlayerCasting : MonoBehaviour
     [SerializeField] private ObjectPoolManager fireBallPool;
     [SerializeField] private float fireBallSpeed;
     [SerializeField] private float fireBallLifeTime;
+    [SerializeField] private float fireBallCooldown; // Продолжительность кулдауна в секундах
+
+    private float lastFireTime; // Время последнего использования фаербола
 
     private void Update()
     {
-        if (Input.GetButtonDown("CastSpell"))
+        // Проверяем, можно ли кастовать фаербол
+        if (Input.GetButtonDown("CastSpell") && Time.time >= lastFireTime + fireBallCooldown)
         {
             ShootFireball();
+            lastFireTime = Time.time; // Обновляем время последнего использования фаербола
         }
     }
 
@@ -22,8 +27,12 @@ public class PlayerCasting : MonoBehaviour
     {
         GameObject projectile = fireBallPool.GetPooledObject();
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        projectile.SetActive(true);
         projectile.transform.position = playerTransform.position;
+        projectile.transform.rotation = Quaternion.identity;
+        projectile.SetActive(true);
+
+        // Сбрасываем скорость проджектайла перед применением новой силы
+        rb.velocity = Vector2.zero;
 
         // Определяем направление в зависимости от направления взгляда игрока
         Vector2 force;
@@ -44,6 +53,9 @@ public class PlayerCasting : MonoBehaviour
     private IEnumerator DisableSpellAfterTime(float time, GameObject spell)
     {
         yield return new WaitForSeconds(time);
-        spell.SetActive(false);
+        if (spell.activeSelf)
+        {
+            spell.SetActive(false);
+        }
     }
 }

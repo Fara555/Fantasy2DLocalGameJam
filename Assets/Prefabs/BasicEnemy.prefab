@@ -48,7 +48,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -518,7 +518,6 @@ GameObject:
   - component: {fileID: 726572838706618062}
   - component: {fileID: 2179948155131137308}
   - component: {fileID: 4005966937256496615}
-  - component: {fileID: 9154690516393207947}
   - component: {fileID: 7221525651320629805}
   - component: {fileID: 4285285240453616267}
   - component: {fileID: 7990192525137328330}
@@ -608,20 +607,6 @@ MonoBehaviour:
     m_Bits: 128
   config: {fileID: 11400000, guid: 8700cf84b0dc7524d9fb74c8eb01ebab, type: 2}
   initialX: 0
---- !u!114 &9154690516393207947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8821075037346095160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1047b07f7146f2498f4b54410c4a9e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  deathDelay: 2
 --- !u!114 &7221525651320629805
 MonoBehaviour:
   m_ObjectHideFlags: 0
