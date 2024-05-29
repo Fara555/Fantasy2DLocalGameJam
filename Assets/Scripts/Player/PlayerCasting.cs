@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCasting : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerCasting : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private ObjectPoolManager fireBallPool;
     [SerializeField] private float fireBallSpeed;
+    [SerializeField] private float fireBallLifeTime;
 
     private void Update()
     {
@@ -36,5 +38,12 @@ public class PlayerCasting : MonoBehaviour
 
         // Применяем силу к проджектайлу
         rb.AddForce(force * fireBallSpeed, ForceMode2D.Impulse);
+        StartCoroutine(DisableSpellAfterTime(fireBallLifeTime, projectile));
+    }
+
+    private IEnumerator DisableSpellAfterTime(float time, GameObject spell)
+    {
+        yield return new WaitForSeconds(time);
+        spell.SetActive(false);
     }
 }

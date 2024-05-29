@@ -17,11 +17,11 @@ public class FireBall : MonoBehaviour
             {
                 enemyHealth.DealDamage(fireBallDamage);
             }
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
         else if (((1 << collision.gameObject.layer) & obstacleMask) != 0)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

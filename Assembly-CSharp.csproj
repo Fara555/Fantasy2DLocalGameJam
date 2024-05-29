@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C731854D-7689-61C3-2996-27530652264D}</ProjectGuid>
+    <ProjectGuid>{9751ED56-A4D6-943A-A060-83C9D455088E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -81,8 +81,8 @@
     <Compile Include="Assets\Scripts\Health\Health.cs" />
     <Compile Include="Assets\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\Enemy\StateMachine\AiState.cs" />
-    <Compile Include="Assets\Scripts\GoToScene\SceneFadeInManager.cs" />
     <Compile Include="Assets\Scripts\Player\FireBall.cs" />
+    <Compile Include="Assets\Scripts\GoToScene\SceneFadeInManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemy\AISensor.cs" />
   </ItemGroup>
@@ -566,6 +566,14 @@
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
       <HintPath>Assets\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2023.2.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2023.2.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -1259,15 +1267,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
-      <Project>{B36BD729-5F3F-B0D9-B49B-DDE1BD1CB619}</Project>
+      <Project>{F38548C8-305F-92DC-2318-65C83EF7D9BA}</Project>
       <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProject.csproj">
-      <Project>{CB0351CD-C9A4-C8BA-0D21-982875F8E84E}</Project>
+      <Project>{0131F8D8-982F-686F-6628-C92AC31A6DF4}</Project>
       <Name>AstarPathfindingProject</Name>
     </ProjectReference>
     <ProjectReference Include="PackageToolsEditor.csproj">
-      <Project>{FE1EF0A1-CEBC-547B-7F65-D8B8C437201E}</Project>
+      <Project>{0AEE36C2-8104-F5B2-42EB-DB25A1B59E5D}</Project>
       <Name>PackageToolsEditor</Name>
     </ProjectReference>
   </ItemGroup>
