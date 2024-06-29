@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BasicEnemy : AiAgent
+public class SpearEnemy : AiAgent
 {
 	protected override void Start()
 	{
@@ -9,9 +9,9 @@ public class BasicEnemy : AiAgent
 
 	protected override void RegisterStates()
 	{
-		stateMachine.RegisterState(new BaseChaseState());
-		stateMachine.RegisterState(new BasePatrolState());
-		stateMachine.RegisterState(new BaseAttackState());
+		stateMachine.RegisterState(new SpearChase());
+		stateMachine.RegisterState(new SpearPatrol());
+		stateMachine.RegisterState(new SpearAttack());
 		stateMachine.RegisterState(new AiAFK());
 	}
 
