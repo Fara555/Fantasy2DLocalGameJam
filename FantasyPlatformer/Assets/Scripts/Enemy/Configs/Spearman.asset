@@ -22,8 +22,9 @@ MonoBehaviour:
   patrolZoneMinX: 0
   patrolZoneMaxX: 45
   showPatrolZone: 0
-  attackForce: 20
-  attackDistance: 5
+  attackForce: 10
+  attackDistance: 7
   attackDuration: 0.6
   attackInterval: 0.3
+  dealDamageDistance: 3
   stunTime: 1
