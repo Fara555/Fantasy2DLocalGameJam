@@ -1,32 +1,31 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpearPatrol : AiState
+public class PatrolState : AiState
 {
 	private bool move;
 	private float lastGeneratedX;
 
 	public float minDistanceBetweenPoints = 15f; // Set your minimum distance here
 
-	public void Enter(AiAgent agent)
+	public virtual void Enter(AiAgent agent)
 	{
-		Debug.Log("spearmnan start patroling");
 		lastGeneratedX = Random.Range(agent.initialX + agent.config.patrolZoneMinX, agent.initialX + agent.config.patrolZoneMaxX);
 		agent.targetPoint = GeneratePoint(agent);
 		agent.InvokeRepeating("UpdatePathToPoint", 0f, 0.3f); //start repeating "UpdatePath" method
 	}
 
-	public void Exit(AiAgent agent)
+	public virtual void Exit(AiAgent agent)
 	{
 		agent.CancelInvoke("UpdatePathToPoint"); //Stop repeat "UpdatePathToPoint" method
 	}
 
-	public AiStateId GetId()
+	public virtual AiStateId GetId()
 	{
 		return AiStateId.Patrol;
 	}
 
-	public void Update(AiAgent agent)
+	public virtual void Update(AiAgent agent)
 	{
 		if (agent.sensor.seenPlayer)
 		{

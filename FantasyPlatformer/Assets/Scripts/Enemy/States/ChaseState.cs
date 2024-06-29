@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpearChase : AiState
+public class ChaseState : AiState
 {
 	public void Enter(AiAgent agent)
 	{
@@ -85,3 +85,4 @@ public class SpearChase : AiState
 		}
 	}
 }
+

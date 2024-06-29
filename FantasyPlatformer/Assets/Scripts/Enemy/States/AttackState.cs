@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class BaseAttackState : AiState
+public class AttackState : AiState
 {
 	public void Enter(AiAgent agent)
 	{
-		agent.StartCoroutine(MeleeAtack(agent));
+		agent.StartCoroutine(MeleeAttack(agent));
 	}
 
 	public void Exit(AiAgent agent)
 	{
-		agent.StopCoroutine(MeleeAtack(agent));
+		agent.StopCoroutine(MeleeAttack(agent));
 	}
 
 	public AiStateId GetId()
@@ -23,14 +23,14 @@ public class BaseAttackState : AiState
 
 	}
 
-	private IEnumerator MeleeAtack(AiAgent agent)
+	public virtual IEnumerator MeleeAttack(AiAgent agent)
 	{
 		agent.animator.SetBool("Attack", true);
 		yield return new WaitForSeconds(agent.config.attackDuration);
 		agent.animator.SetBool("Attack", false);
 
 		float distance = Vector2.Distance(agent.transform.position, agent.playerTransform.position);
-		if (distance < agent.config.attackDistance)
+		if (distance < agent.config.dealDamageDistance)
 		{
 			agent.playerHealth.DealDamage(20f);
 
