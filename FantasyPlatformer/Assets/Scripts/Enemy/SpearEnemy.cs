@@ -5,6 +5,8 @@ public class SpearEnemy : AiAgent
 	[Header("Attack variables")]
 	public float chargeDuration;
 
+	[HideInInspector] public Vector2 playerAttackPos;
+
 	protected override void Start()
 	{
 		base.Start();
